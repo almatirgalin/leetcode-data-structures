@@ -4,6 +4,36 @@ import (
 	"testing"
 )
 
+func TestGet(t *testing.T) {
+	l := Constructor()
+	node := Node{nil, 2}
+	l.head = &node
+	l.len = 1
+
+	val := l.Get(0)
+
+	if val != 2 {
+		t.Error("Expected 2, got ", val)
+	}
+
+	node = Node{nil, 3}
+
+	l.head.Next = &node
+	l.len = 2
+
+	val = l.Get(1)
+
+	if val != 3 {
+		t.Error("Expected 3, got ", val)
+	}
+
+	val = l.Get(2)
+
+	if val != -1 {
+		t.Error("Expected -1, got ", val)
+	}
+}
+
 func TestAddAtHead(t *testing.T) {
 	l := Constructor()
 	l.AddAtHead(20)

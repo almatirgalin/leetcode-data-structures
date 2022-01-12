@@ -3,8 +3,8 @@ package linkedlist
 import "fmt"
 
 type Node struct {
-	next *Node
-	val  int
+	Next *Node
+	Val  int
 }
 
 type MyLinkedList struct {
@@ -25,10 +25,10 @@ func (l *MyLinkedList) Get(index int) int {
 		node := l.head
 
 		for i := 0; i != index; i++ {
-			node = node.next
+			node = node.Next
 		}
 
-		return node.val
+		return node.Val
 	}
 
 	return -1
@@ -51,7 +51,7 @@ func (l *MyLinkedList) AddAtIndex(index int, val int) {
 
 	if index == 0 {
 		if l.head != nil {
-			newNode.next = l.head
+			newNode.Next = l.head
 		}
 
 		l.head = &newNode
@@ -59,14 +59,14 @@ func (l *MyLinkedList) AddAtIndex(index int, val int) {
 		node := l.head
 
 		for i := 1; i < index; i++ {
-			node = node.next
+			node = node.Next
 		}
 
-		if node.next != nil {
-			newNode.next = node.next
+		if node.Next != nil {
+			newNode.Next = node.Next
 		}
 
-		node.next = &newNode
+		node.Next = &newNode
 	}
 
 	l.len++
@@ -76,18 +76,18 @@ func (l *MyLinkedList) DeleteAtIndex(index int) {
 	if index < l.len {
 		prevNode := l.head
 
-		if index == 0 && prevNode.next != nil {
-			l.head = prevNode.next
+		if index == 0 && prevNode.Next != nil {
+			l.head = prevNode.Next
 		}
 
 		for i := 1; i < index; i++ {
-			prevNode = prevNode.next
+			prevNode = prevNode.Next
 		}
 
-		if prevNode.next != nil && prevNode.next.next != nil {
-			prevNode.next = prevNode.next.next
+		if prevNode.Next != nil && prevNode.Next.Next != nil {
+			prevNode.Next = prevNode.Next.Next
 		} else {
-			prevNode.next = nil
+			prevNode.Next = nil
 		}
 
 		l.len--
@@ -100,8 +100,8 @@ func (l *MyLinkedList) Print() {
 	node := l.head
 	fmt.Println(node)
 
-	for node != nil && node.next != nil {
-		node = node.next
+	for node != nil && node.Next != nil {
+		node = node.Next
 		fmt.Println(node)
 	}
 }
