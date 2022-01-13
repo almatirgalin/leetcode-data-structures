@@ -27,3 +27,19 @@ func TestHasCycle(t *testing.T) {
 		t.Error("Expected false, got ", isCycle)
 	}
 }
+
+func TestDetectCycle(t *testing.T) {
+	l := Constructor()
+	l.AddAtHead(1)
+	l.AddAtTail(2)
+	l.AddAtTail(3)
+	l.AddAtTail(4)
+
+	l.head.Next.Next.Next = l.head.Next
+
+	detected := detectCycle(l.head)
+
+	if detected != l.head.Next {
+		t.Error("Expected head next node, got ", detected)
+	}
+}
